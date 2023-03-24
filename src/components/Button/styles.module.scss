@@ -1,0 +1,25 @@
+@use 'src/styles/theme' as theme;
+
+.button {
+  padding: 5px 10px;
+  background-color: theme.$background-color-button1;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  color: theme.$color-text;
+  font-weight: bold;
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid theme.$color-border1;
+    background-color: theme.$white;
+  }
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}
+
+.button .buttonTitle {
+  font-weight: bold;
+}

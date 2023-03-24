@@ -1,23 +1,30 @@
 import {Button, Paper} from 'components';
 import {TableComponents} from 'components';
 import DocumentsTable from 'features/DocumentsTable';
+import classes from 'styles/PricePlans.module.scss';
 import moment from 'moment';
-import classes from 'styles/Home.module.scss';
 
 const {TableHeaderCell, TableCell} = TableComponents;
 
-export type RowType = {id: number; name: string; active: boolean; createdAt: string};
-export type RenderRowProps = {
+export type RowType = {
+  id: number;
+  description: string;
+  active: boolean;
+  createdAt: string;
+  removedAt: string;
+};
+export type RenderPagesRowProps = {
   item: RowType;
   cellProps: {
-    setEditModalItem: (row: RowType | undefined) => void;
+    setEditModalItem: (id: RowType | undefined) => void;
   }
 };
 
 export const HEADERS_LIST = [
-  {id: 'name', title: 'Name'},
+  {id: 'description', title: 'Description'},
   {id: 'active', title: 'Status'},
   {id: 'createdAt', title: 'Created'},
+  {id: 'removedAt', title: 'Removed'},
   {id: 'edit', title: ''},
 ];
 
@@ -35,12 +42,14 @@ const renderHeaderRow = () => {
   );
 };
 
-const renderTableRow = (props: RenderRowProps) => {
+
+const renderTableRow = (props: RenderPagesRowProps) => {
   const {
     item: {
-      name,
+      description,
       active,
       createdAt,
+      removedAt,
     },
     cellProps: {
       setEditModalItem,
@@ -49,14 +58,17 @@ const renderTableRow = (props: RenderRowProps) => {
 
   return (
     <>
-      <TableCell className={classes.nameColumn}>
-        {name}
+      <TableCell>
+        {description}
       </TableCell>
       <TableCell>
         {active ? 'Active' : 'Inactive'}
       </TableCell>
       <TableCell>
         {moment(createdAt).format('L, HH:mm')}
+      </TableCell>
+      <TableCell>
+        {moment(removedAt).format('L, HH:mm')}
       </TableCell>
       <TableCell>
         <Button onClick={() => setEditModalItem(props.item)}>
@@ -72,13 +84,13 @@ export default function Home() {
     <Paper>
       <DocumentsTable<RowType>
         className={classes.table}
-        documentType='products'
+        documentType='pricePlans'
         renderHeaderRow={renderHeaderRow}
         renderTableRow={renderTableRow}
-        searchByField='name'
+        searchByField='description'
         filterByField='active'
-        changedField='name'
-        filterByDateFields={[{id: 'createdAt', title: 'Created'}]}
+        changedField='description'
+        filterByDateFields={[{id: 'createdAt', title: 'Created'}, {id: 'removedAt', title: 'Removed'}]}
       />
     </Paper>
   );

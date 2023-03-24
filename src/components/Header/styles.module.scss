@@ -1,0 +1,26 @@
+@use 'src/styles/theme' as theme;
+@use 'src/styles/breakpoints' as breakpoints;
+
+:local {
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 60px;
+    background-color: theme.$dark;
+  }
+  .headerContent {
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    align-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+    max-width: breakpoints.$lg;
+  }
+}

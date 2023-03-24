@@ -1,0 +1,22 @@
+@use 'src/styles/theme' as theme;
+
+.p1 {
+  font-weight: theme.$font-weight2;
+  font-size: theme.$p1-size;
+  line-height: theme.$p1-lh;
+}
+.p2 {
+  font-weight: theme.$font-weight1;
+  font-size: theme.$p2-size;
+  line-height: theme.$p2-lh;
+}
+.h1 {
+  font-size: theme.$h1-size;
+  line-height: theme.$h1-lh;
+  font-weight: theme.$font-weight3;
+}
+.h6 {
+  font-size: theme.$h6-size;
+  line-height: theme.$h6-lh;
+  font-weight: theme.$font-weight3;
+}

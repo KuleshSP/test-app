@@ -1,0 +1,21 @@
+@use 'src/styles/theme' as theme;
+
+.header {
+  justify-content: flex-start;
+}
+
+.headerLink {
+  height: 100%;
+  width: 100px;
+  color: theme.$white;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: theme.$white;
+    color: theme.$dark;
+  }
+}
+.activeLink {
+  opacity: 0.5;
+  pointer-events: none;
+}
