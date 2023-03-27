@@ -1,4 +1,5 @@
 import {createContext, Dispatch, SetStateAction, useContext} from 'react';
+import {MutatorOptions} from 'swr';
 
 export type TableContextType<T> = {
   items: T[];
@@ -12,7 +13,7 @@ export type TableContextType<T> = {
     setSearchFieldPath: Dispatch<SetStateAction<unknown | undefined>>;
     setFilterByField: (value?: unknown) => void;
     setFilterByFieldPath: Dispatch<SetStateAction<unknown | undefined>>;
-    mutateData: (cb: (data: T[]) =>T[]) => void;
+    mutateData: (cb: (data: T[]) =>T[], mutatorOptions: MutatorOptions) => void;
     setDateFilter: (value: {[key: string]: {from: string; to: string}} | undefined) => void;
     handleChangeDateFilter: (value: string, path: string[]) => void;
   };

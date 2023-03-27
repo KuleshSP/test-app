@@ -1,16 +1,17 @@
 import {useDebounce} from 'hooks/debounce';
 import {useEffect, useState} from 'react';
-import useSWR from 'swr';
+import useSWR, {MutatorOptions} from 'swr';
 import {instance} from '_services/axios';
 import {TableContextType} from './TableContext';
 import moment from 'moment';
+import {removeWhitespaces} from 'utils/text';
 
 const fetcher = (url: string) => instance.get(url).then((res) => res.data);
 
 const useTable = <T, >(getSWRKey: (...args: any) => string): TableContextType<T> => {
   const [searchValue, setSearchValue] = useState('');
   const [searchFieldPath, setSearchFieldPath] = useState<unknown | undefined>(undefined);
-  const debouncedSearchValue = useDebounce<string>(searchValue.replace(/\s+/g, ' ').trim(), 300);
+  const debouncedSearchValue = useDebounce<string>(removeWhitespaces(searchValue), 300);
 
   const [filterByField, setFilterByField] = useState<unknown | undefined>(undefined);
   const [filterByFieldPath, setFilterByFieldPath] = useState<unknown | undefined>(undefined);
@@ -66,8 +67,13 @@ const useTable = <T, >(getSWRKey: (...args: any) => string): TableContextType<T>
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearchValue, filterByField, JSON.stringify(dateFilter)]);
 
-  const mutateData = (cb: (data: T[]) => T[]) => {
-    mutate(cb as unknown as T[], {revalidate: false});
+  const mutateData = (cb: (data: T[]) => T[], mutatorOptions: MutatorOptions) => {
+    if (isFiltersActive) {
+      const filteredDataCopy = [...filteredData];
+      setFilteredData(cb(filteredDataCopy));
+    }
+
+    mutate((data) => data !== undefined ? cb(data) : [], mutatorOptions);
   };
 
   const isFiltersActive = ((!!searchValue || (filterByField !== undefined) || !isDateFilterEmpty));

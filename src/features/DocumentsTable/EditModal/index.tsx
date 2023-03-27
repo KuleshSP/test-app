@@ -5,6 +5,7 @@ import type {ModalProps} from 'components/Modal';
 import {useTableContext} from 'components/Table/services/TableContext';
 import {EMPTY_INPUT_ERROR} from '../constants';
 import {TableRowItem} from 'components/Table/services/types';
+import {removeWhitespaces} from 'utils/text';
 
 const EditModal = <T, >(props: {row: T, changedField: keyof T} & ModalProps): JSX.Element => {
   const {row, changedField, handleClose} = props;
@@ -21,9 +22,9 @@ const EditModal = <T, >(props: {row: T, changedField: keyof T} & ModalProps): JS
     mutateData((data) => data.map((item) => {
       return {
         ...item,
-        [changedField]: (item as TableRowItem).id === (row as TableRowItem).id ? inputValue : item[changedField],
+        [changedField]: (item as TableRowItem).id === (row as TableRowItem).id ? removeWhitespaces(inputValue) : item[changedField],
       };
-    }));
+    }), {revalidate: false});
   };
 
   return (
@@ -50,7 +51,7 @@ const EditModal = <T, >(props: {row: T, changedField: keyof T} & ModalProps): JS
           onClick={(e) => {
             e.preventDefault();
 
-            if ((inputValue as string).replace(/\s+/g, ' ').trim().length === 0) {
+            if (removeWhitespaces(inputValue).length === 0) {
               setError(EMPTY_INPUT_ERROR);
               return;
             };
