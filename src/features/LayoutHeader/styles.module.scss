@@ -5,17 +5,18 @@
 }
 
 .headerLink {
-  height: 100%;
   width: 100px;
+  height: 100%;
   color: theme.$white;
   transition: all 0.3s;
 
   &:hover {
-    background-color: theme.$white;
     color: theme.$dark;
+    background-color: theme.$white;
   }
 }
+
 .activeLink {
-  opacity: 0.5;
   pointer-events: none;
+  opacity: 0.5;
 }

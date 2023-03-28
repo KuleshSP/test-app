@@ -30,9 +30,10 @@
 
 .tableToolbar {
   display: flex;
+  gap: 10px;
   align-items: center;
   justify-content: flex-end;
-  gap: 10px;
+
   padding: 15px;
 }
 
@@ -54,39 +55,44 @@
 
 .dateFilterButton {
   display: flex;
+  gap: 5px;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  border: none;
-  background-color: theme.$background-color-button2;
+
   color: theme.$color-text-contrast;
+
+  background-color: theme.$background-color-button2;
+  border: none;
 
   p {
     color: theme.$color-text-contrast;
   }
 
   &:hover {
-    opacity: 0.9;
-    border: none;
-    background-color: theme.$background-color-button2;
     color: theme.$color-text-contrast;
+    opacity: 0.9;
+    background-color: theme.$background-color-button2;
+    border: none;
   }
 }
 
 .dateFilterModal {
+  position: absolute;
   z-index: 10010;
+  right: 0;
+  bottom: -10px;
+  transform: translateY(100%);
+
+  overflow: hidden;
   display: none;
   flex-direction: column;
-  position: absolute;
   gap: 15px;
+
   padding: 15px;
-  bottom: -10px;
-  right: 0;
-  transform: translateY(100%);
-  border-radius: 10px;
+
   background-color: theme.$white;
-  box-shadow: 0px 4px 32px rgba(51, 51, 51, 0.15);
-  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 32px rgb(51 51 51 / 15%);
 }
 
 .dateFilterModalOpened {
@@ -98,6 +104,7 @@
   flex-direction: column;
   gap: 5px;
 }
+
 .dateFilterInputsBox {
   display: flex;
   gap: 10px;
@@ -105,8 +112,8 @@
 
 .dateFilterItemTitle {
   align-self: flex-end;
-  padding-bottom: 12px;
   margin-right: auto;
+  padding-bottom: 12px;
 }
 
 .filterErrorMessage {
@@ -116,6 +123,7 @@
 .dateFilterInputError input {
   border-color: theme.$error;
 }
+
 .resetDateFilter {
   align-self: center;
 }

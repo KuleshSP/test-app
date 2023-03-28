@@ -2,55 +2,67 @@
 
 .container {
   position: relative;
+
   display: flex;
   align-items: center;
+
   height: 42px;
   padding: 10px 46px 10px 10px;
-  border: 1px solid theme.$color-border1;
-  border-radius: 5px;
-  background-color: theme.$white;
+
   font-size: 16px;
   line-height: 20px;
+
+  background-color: theme.$white;
+  border: 1px solid theme.$color-border1;
+  border-radius: 5px;
   
   p {
+    font-weight: 600;
     color: theme.$accent;
     text-transform: capitalize;
-    font-weight: 600;
   }
 }
 
 .iconBox {
-  display: flex;
-  gap: 5px;
   position: absolute;
   top: 50%;
   right: 14px;
   transform: translateY(-50%);
+
+  display: flex;
+  gap: 5px;
+
   color: theme.$accent;
 }
 
 .arrowIcon {
   transform: translate(-50%, -50%) rotate(180deg);
 }
+
 .arrowButtonIconOpened {
   transform: translate(-50%, -50%);
 }
+
 .timesIconButtonHidden {
   display: none;
 }
+
 .dropdownList {
-  z-index: 10010;
-  display: none;
-  flex-direction: column;
   position: absolute;
-  width: 100%;
+  z-index: 10010;
   bottom: -10px;
   left: 0;
   transform: translateY(100%);
-  border-radius: 10px;
-  background-color: theme.$white;
-  box-shadow: 0px 4px 32px rgba(51, 51, 51, 0.15);
+
   overflow: hidden;
+  display: none;
+  flex-direction: column;
+
+  width: 100%;
+
+  background-color: theme.$white;
+  border-radius: 10px;
+  box-shadow: 0 4px 32px rgb(51 51 51 / 15%);
 }
 
 .dropdownListOpened {
@@ -59,8 +71,8 @@
 
 .dropdownListItem {
   padding: 10px;
-  border-bottom: 1px solid theme.$color-border1;
   text-transform: capitalize;
+  border-bottom: 1px solid theme.$color-border1;
 
   &:hover {
     cursor: pointer;

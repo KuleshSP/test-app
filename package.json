@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "stylelint": "stylelint \"**/*.scss\" --fix"
   },
   "dependencies": {
     "@types/node": "18.15.5",
@@ -21,12 +22,18 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "swr": "^2.1.0",
+    "the-new-css-reset": "^1.8.4",
     "typescript": "5.0.2"
   },
   "devDependencies": {
     "classnames": "^2.3.2",
     "eslint-config-google": "^0.14.0",
     "moment": "^2.29.4",
-    "sass": "^1.59.3"
+    "sass": "^1.59.3",
+    "stylelint": "^15.3.0",
+    "stylelint-config-clean-order": "^5.0.0",
+    "stylelint-config-standard": "^31.0.0",
+    "stylelint-config-standard-scss": "^7.0.1",
+    "stylelint-scss": "^4.6.0"
   }
 }

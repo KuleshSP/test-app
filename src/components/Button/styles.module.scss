@@ -2,16 +2,18 @@
 
 .button {
   padding: 5px 10px;
-  background-color: theme.$background-color-button1;
-  border-radius: 5px;
-  border: 1px solid transparent;
-  color: theme.$color-text;
+
   font-weight: bold;
+  color: theme.$color-text;
+
+  background-color: theme.$background-color-button1;
+  border: 1px solid transparent;
+  border-radius: 5px;
 
   &:hover {
     cursor: pointer;
-    border: 1px solid theme.$color-border1;
     background-color: theme.$white;
+    border: 1px solid theme.$color-border1;
   }
 
   &:disabled {
